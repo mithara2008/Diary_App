@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ChinaPink">#E56399</color>
+    <color name="SummerCampBlue">#2364AA</color>
+    <color name="CaliforniaBlue">#3DA5D9</color>
+    <color name="GreenSheen">#73BFB8</color>
+
+
+</resources>
