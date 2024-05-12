@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+    <item name="colorPrimary">@color/CaliforniaBlue</item>
+    <item name="colorPrimaryVariant">@color/CaliforniaBlue</item>
+    <item name="android:statusBarColor">@color/GreenSheen</item>
+    <!-- Add custom font family -->
+    <item name="fontFamily">@font/poppins</item>
+    <item name="android:textStyle">bold</item>
+
+    <!-- Add font color -->
+    <item name="android:textColor">@color/SummerCampBlue</item>
+</style>
+</resources>

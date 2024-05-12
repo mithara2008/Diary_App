@@ -7,20 +7,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".AddNoteActivity">
+    tools:context=".UpdateNoteActivity">
 
     <TextView
-        android:id="@+id/addNoteHeading"
+        android:id="@+id/editNoteHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="16dp"
-        android:text="Add Note."
+        android:text="Edit Note."
         android:textColor="@color/SummerCampBlue"
         android:textSize="24sp"/>
 
     <ImageView
-        android:id="@+id/saveButton"
+        android:id="@+id/UpdateSaveButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignTop="@id/addNoteHeading"
@@ -30,10 +30,10 @@
         android:src="@drawable/done1" />
 
     <EditText
-        android:id="@+id/titleEditText"
+        android:id="@+id/UpdateTitleEditText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/addNoteHeading"
+        android:layout_below="@id/editNoteHeading"
         android:layout_marginTop="16dp"
         android:background="@drawable/blue_border"
         android:fontFamily="@font/poppins"
@@ -43,7 +43,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/contentEditText"
+        android:id="@+id/UpdateContentEditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter the description"
@@ -52,18 +52,10 @@
         android:textSize="18sp"
         android:background="@drawable/blue_border"
         android:fontFamily="@font/poppins"
-        android:layout_below="@id/titleEditText"
+        android:layout_below="@id/UpdateTitleEditText"
         android:layout_marginTop="12dp"
         tools:ignore="UnknownId" />
 
-    <ImageView
-        android:id="@+id/contentIcon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/content" />
 
 
 </RelativeLayout>
