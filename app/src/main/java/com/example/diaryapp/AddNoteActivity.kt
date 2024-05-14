@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.diaryapp.databinding.ActivityAddNoteBinding
 import com.example.diaryapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AddNoteActivity : AppCompatActivity() {
 
@@ -23,9 +26,12 @@ class AddNoteActivity : AppCompatActivity() {
             val title =binding.titleEditText.text.toString()
             val content = binding.contentEditText.text.toString()
             val note = Note(0,title, content)
-            db.insertNote(note)
-            finish()
-            Toast.makeText(this,"Note Saved", Toast.LENGTH_SHORT).show()
+
+           GlobalScope.launch(Dispatchers.Main) {
+               db.insertNoteAsync(note)
+               finish()
+               Toast.makeText(this@AddNoteActivity,"Note Saved", Toast.LENGTH_SHORT).show()
+           }
         }
     }
 }

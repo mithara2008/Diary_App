@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diaryapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         db = NoteDatabaseHelper(this)
-        notesAdapter = NotesAdapter(db.getAllNotes(), this)
+        notesAdapter = NotesAdapter(emptyList(), this)
 
         binding.notesRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.notesRecyclerView.adapter = notesAdapter
@@ -28,11 +31,20 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddNoteActivity::class.java)
             startActivity(intent)
         }
+        fetchNotesAsync()
+
     }
 
     override fun onResume() {
         super.onResume()
-        notesAdapter.refreshData(db.getAllNotes())
+        fetchNotesAsync()
+    }
+
+    private fun fetchNotesAsync(){
+        GlobalScope.launch(Dispatchers.Main){
+            val notes = db.getAllNotesAsync()
+            notesAdapter.refreshData(notes)
+        }
     }
 
 }

@@ -5,6 +5,8 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class NoteDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
     DATABASE_VERSION) {
@@ -30,35 +32,39 @@ class NoteDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         onCreate(db)
     }
 
-    fun insertNote(note: Note){
-        val db = writableDatabase
-        val values = ContentValues().apply {
-            put(COLUMN_TITLE, note.title)
-            put(COLUMN_CONTENT, note.Content)
-        }
-        db.insert(TABLE_NAME,null, values)
-        db.close()
+    suspend fun insertNoteAsync(note: Note){
+       withContext(Dispatchers.IO){
+           val db = writableDatabase
+           val values = ContentValues().apply {
+               put(COLUMN_TITLE, note.title)
+               put(COLUMN_CONTENT, note.Content)
+           }
+           db.insert(TABLE_NAME,null, values)
+           db.close()
+       }
     }
 
-    fun getAllNotes(): List<Note>{
-        val notesList = mutableListOf<Note>()
-        val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME"
-        val cursor = db.rawQuery(query, null)
+    suspend fun getAllNotesAsync(): List<Note>{
+        return withContext(Dispatchers.IO){
+            val notesList = mutableListOf<Note>()
+            val db = readableDatabase
+            val query = "SELECT * FROM $TABLE_NAME"
+            val cursor = db.rawQuery(query, null)
 
-        while (cursor.moveToNext()){
-            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
-            val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-            val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            while (cursor.moveToNext()){
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+                val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+                val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
 
-            val note = Note(id, title, content)
-            notesList.add(note)
+                val note = Note(id, title, content)
+                notesList.add(note)
 
+            }
+
+            cursor.close()
+            db.close()
+            notesList
         }
-
-        cursor.close()
-        db.close()
-        return notesList
     }
 
     fun updateNote(note: Note){
@@ -88,12 +94,14 @@ class NoteDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         return Note(id, title, content)
     }
 
-    fun deleteNote(noteId: Int){
-        val db = writableDatabase
-        val whereClause = "$COLUMN_ID = ?"
-        val whereArgs = arrayOf(noteId.toString())
-        db.delete(TABLE_NAME, whereClause, whereArgs)
-        db.close()
+    suspend fun deleteNoteAsync(noteId: Int){
+       withContext(Dispatchers.IO){
+           val db = writableDatabase
+           val whereClause = "$COLUMN_ID = ?"
+           val whereArgs = arrayOf(noteId.toString())
+           db.delete(TABLE_NAME, whereClause, whereArgs)
+           db.close()
+       }
     }
 
 

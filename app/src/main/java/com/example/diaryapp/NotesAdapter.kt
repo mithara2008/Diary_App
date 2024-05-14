@@ -2,6 +2,7 @@ package com.example.diaryapp
 
 import android.content.Context
 import android.content.Intent
+import android.provider.Settings.Global
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class NotesAdapter(private var notes: List<Note>, context: Context) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
@@ -42,9 +46,11 @@ class NotesAdapter(private var notes: List<Note>, context: Context) : RecyclerVi
         }
 
         holder.deleteButton.setOnClickListener {
-            db.deleteNote(note.id)
-            refreshData(db.getAllNotes())
-            Toast.makeText(holder.itemView.context, "Note Deleted", Toast.LENGTH_SHORT).show()
+            GlobalScope.launch(Dispatchers.Main) {
+                db.deleteNoteAsync(note.id)
+                refreshData(db.getAllNotesAsync())
+                Toast.makeText(holder.itemView.context, "Note Deleted", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
