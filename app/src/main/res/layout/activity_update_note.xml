@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="#b1def1"
     tools:context=".UpdateNoteActivity">
 
     <TextView
@@ -21,13 +22,14 @@
 
     <ImageView
         android:id="@+id/UpdateSaveButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:layout_alignTop="@id/addNoteHeading"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="-2dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/done1" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="-40dp"
+        android:tooltipText="Save"
+        android:src="@drawable/check_mark_button" />
 
     <EditText
         android:id="@+id/UpdateTitleEditText"
@@ -45,7 +47,7 @@
     <EditText
         android:id="@+id/UpdateContentEditText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:hint="Enter the description"
         android:gravity="top"
         android:padding="12dp"
@@ -55,6 +57,9 @@
         android:layout_below="@id/UpdateTitleEditText"
         android:layout_marginTop="12dp"
         tools:ignore="UnknownId" />
+
+
+
 
 
 

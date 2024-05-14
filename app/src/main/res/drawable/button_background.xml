@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Button Pressed State -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/CaliforniaBlue"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- Button Default State -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/SummerCampBlue"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+</selector>

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#b1e4ff"
     tools:context=".MainActivity">
 
     <TextView
@@ -17,7 +18,7 @@
         android:text="MindMemo"
         android:textStyle="bold"
         android:layout_marginStart="18dp"
-        android:textColor="@color/CaliforniaBlue"
+        android:textColor="@color/SummerCampBlue"
         android:textSize="28sp"/>
 
     <ImageView
@@ -48,6 +49,6 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/baseline_add_24"
         app:tint="@color/white"
-        android:backgroundTint="@color/GreenSheen"
+        android:backgroundTint="@color/SummerCampBlue"
  />
 </RelativeLayout>

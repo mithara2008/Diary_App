@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="#b1e4ff"
     tools:context=".AddNoteActivity">
 
     <TextView
@@ -18,16 +19,6 @@
         android:text="Add Note."
         android:textColor="@color/SummerCampBlue"
         android:textSize="24sp"/>
-
-    <ImageView
-        android:id="@+id/saveButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignTop="@id/addNoteHeading"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-2dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/done1" />
 
     <EditText
         android:id="@+id/titleEditText"
@@ -45,7 +36,7 @@
     <EditText
         android:id="@+id/contentEditText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:hint="Enter the description"
         android:gravity="top"
         android:padding="12dp"
@@ -56,15 +47,15 @@
         android:layout_marginTop="12dp"
         tools:ignore="UnknownId" />
 
-    <ImageView
-        android:id="@+id/contentIcon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/contentEditText"
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_below="@id/contentEditText"
+        android:layout_marginTop="12dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/content" />
-
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/white"/>
 
 </RelativeLayout>
