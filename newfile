@@ -1,0 +1,3 @@
+echo "# Trigger cache refresh" > trigger-cache-refresh.txt
+git add trigger-cache-refresh.txt
+git commit -m "Trigger cache refresh"
